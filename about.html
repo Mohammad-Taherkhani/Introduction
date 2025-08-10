@@ -2,12 +2,12 @@
 <html lang="fa" dir="rtl">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- جلوگیری از تغییر مقیاس در موبایل -->
+  <meta name="viewport" content="width=1024, initial-scale=1, maximum-scale=1, user-scalable=no" />
   <title>درباره من — محمد طاهرخانی</title>
 
   <!-- Manly font (from OnlineWebFonts) — اضافه شده به درخواست شما. -->
-  <!-- منبع: OnlineWebFonts (این لینک را سایت خودش برای استفاده وب پیشنهاد می‌دهد). -->
-  <link href="https://db.onlinewebfonts.com/c/9aadb2db83934df77367eb9ce43f8e7e?family=Manly+Man+Font+Regular" rel="stylesheet"> <!-- :contentReference[oaicite:2]{index=2} -->
+  <link href="https://db.onlinewebfonts.com/c/9aadb2db83934df77367eb9ce43f8e7e?family=Manly+Man+Font+Regular" rel="stylesheet">
 
   <!-- Vazirmatn (fallback برای متن فارسی) -->
   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;800&display=swap" rel="stylesheet">
@@ -109,7 +109,7 @@
     .skills{
       position:absolute;
       inset:0;
-      pointer-events:none; /* خود skill ها pointer دارند */
+      pointer-events:none;
     }
 
     /* هر یک دایره‌ی مهارت */
@@ -141,16 +141,13 @@
       user-select:none;
       transition: transform 300ms cubic-bezier(.2,.9,.3,1), box-shadow 300ms ease;
       z-index: 5;
-      /* animation: popIn then keep floating by animating 'top' */
       animation: popIn 700ms cubic-bezier(.2,.9,.3,1) var(--delay,0s) both;
     }
 
-    /* موج شناور (float) با تغییر top کوچک (ممکن است واحد درصد + px داشته باشد) */
     .skill[data-float="true"]{
       animation-name: popIn;
       animation-fill-mode: both;
     }
-    /* برای هر آیتم، از یک animation-delay استفاده کن تا دونه‌دونه pop کنند (با inline style) */
 
     @keyframes popIn{
       0%{ transform: translate(-50%,-50%) scale(0); opacity:0; }
@@ -158,7 +155,6 @@
       100%{ transform: translate(-50%,-50%) scale(1); opacity:1; }
     }
 
-    /* float animation با استفاده از تغییر top و left جزئی (روی کلیدهای متفاوت زمان) */
     @keyframes floatA{
       0%{ top: calc(var(--y) - 8px); left: calc(var(--x) - 6px); }
       50%{ top: calc(var(--y) + 10px); left: calc(var(--x) + 6px); }
@@ -170,23 +166,19 @@
       100%{ top: calc(var(--y) + 6px); left: calc(var(--x) + 6px); }
     }
 
-    /* اختصاصی: هر skill بعد از pop ظاهر شده، با انیمیشن float نامحدود حرکت می‌کند.
-       مقدار delay و float-duration را با inline style برای هر عنصر تعیین کرده‌ایم. */
     .skill.float-slow{ animation-name: popIn; animation-duration: 700ms; animation-fill-mode: both; animation-delay: var(--delay,0s); animation-timing-function: cubic-bezier(.2,.9,.3,1); }
     .skill.float-slow[data-float="true"]{ animation-name: popIn; }
     .skill.f1 { animation: popIn 700ms cubic-bezier(.2,.9,.3,1) var(--delay,0s) both; animation-fill-mode: both; }
-    /* بعد از popIn، از یک animation جدا برای float استفاده می‌کنیم با animation-play-state running به کمک animation shorthand دوبل */
+
     .skill[data-float="true"]{
       animation: popIn 700ms cubic-bezier(.2,.9,.3,1) var(--delay,0s) both,
                  floatA var(--float,6s) ease-in-out calc(var(--delay,0s) + 0.65s) infinite;
     }
-    /* variant برای برخی آیتم‌ها */
     .skill.altFloat[data-float="true"]{
       animation: popIn 700ms cubic-bezier(.2,.9,.3,1) var(--delay,0s) both,
                  floatB var(--float,5.2s) ease-in-out calc(var(--delay,0s) + 0.65s) infinite;
     }
 
-    /* hover: بزرگ شدن (explode) + موج شعاعی */
     .skill::after{
       content:"";
       position:absolute;
@@ -208,13 +200,11 @@
       transition-timing-function: cubic-bezier(.2,.9,.3,1);
     }
 
-    /* واکنش‌گرایی: اگر صفحه خیلی کوچک شد، skillها کوچکتر بشن */
     @media (max-width:520px){
       .main-circle{ padding:20px; width:88vw;height:88vw; }
       .skill{ --size: clamp(58px, 14vw, 86px); font-size:12px; }
     }
 
-    /* لینک برگشت ساده */
     .back-link{
       margin-top:18px;
       display:inline-block;
@@ -230,10 +220,7 @@
   </style>
 </head>
 <body>
-  <!-- وقتی لینکِ صفحه‌ی اول اینطوری باشه: <a href="about.html#from-home">...</a>
-       مرورگر در about.html عنصر با id="from-home" را تارجت می‌کند و انیمیشن morph اجرا می‌شود. -->
   <div id="from-home"></div>
-
   <div class="page">
     <div class="main-circle" role="region" aria-label="درباره من">
       <h1>درباره من</h1>
@@ -242,26 +229,19 @@
         با دستانی پر از تجربه در کار با نرم‌افزارهای مختلف، دوست دارم با انرژی مثبت و دیدگاهی نو، به چالش‌های جدید بپردازم و ایده‌ها رو به واقعیت تبدیل کنم. 
         اگه دنبال یه همکار پرانرژی و مشتاق هستید که همیشه آماده‌ست تا بهترین خودش رو ارائه بده، فکر می‌کنم گزینه خوبی هستم.
       </p>
-
-      <!-- اختیاری: لینک برگشت -->
       <a class="back-link" href="index.html" aria-label="بازگشت به صفحه اصلی">بازگشت به صفحه اصلی</a>
     </div>
-
-    <!-- مهارت‌ها (هر عنصر با --x و --y موقعیت‌دهی شده؛ --delay برای stagger ظاهر شدن؛ --float طول دوره‌ی شناوری) -->
     <div class="skills" aria-hidden="false">
-      <!-- نمونه‌ها: مقادیر درصدی طوری انتخاب شده‌اند که در اطراف دایره پراکنده باشن -->
       <div class="skill altFloat" data-float="true" style="--x:12%; --y:18%; --delay:0.05s; --float:6.6s;">After Effects</div>
       <div class="skill"      data-float="true" style="--x:26%; --y:8%;  --delay:0.10s; --float:5.8s;">Corel Draw</div>
       <div class="skill altFloat" data-float="true" style="--x:44%; --y:6%;  --delay:0.14s; --float:7.2s;">Microsoft Visual Studio</div>
       <div class="skill"      data-float="true" style="--x:70%; --y:8%;  --delay:0.18s; --float:6.0s;">C++</div>
       <div class="skill altFloat" data-float="true" style="--x:86%; --y:18%; --delay:0.22s; --float:5.4s;">Figma</div>
-
       <div class="skill"      data-float="true" style="--x:88%; --y:36%; --delay:0.26s; --float:6.8s;">Linux</div>
       <div class="skill altFloat" data-float="true" style="--x:80%; --y:54%; --delay:0.30s; --float:5.6s;">CodeVision</div>
       <div class="skill"      data-float="true" style="--x:68%; --y:72%; --delay:0.34s; --float:6.2s;">Adobe Illustrator</div>
       <div class="skill altFloat" data-float="true" style="--x:52%; --y:84%; --delay:0.38s; --float:5.8s;">Adobe Premiere</div>
       <div class="skill"      data-float="true" style="--x:34%; --y:86%; --delay:0.42s; --float:6.4s;">C#</div>
-
       <div class="skill altFloat" data-float="true" style="--x:18%; --y:72%; --delay:0.46s; --float:5.2s;">Electronics</div>
       <div class="skill"      data-float="true" style="--x:8%;  --y:54%; --delay:0.50s; --float:6.0s;">Arduino</div>
       <div class="skill altFloat" data-float="true" style="--x:12%; --y:36%; --delay:0.54s; --float:6.8s;">esp32</div>
