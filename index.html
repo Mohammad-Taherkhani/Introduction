@@ -2,7 +2,8 @@
 <html lang="fa" dir="rtl">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- جلوگیری از تغییر مقیاس در موبایل -->
+  <meta name="viewport" content="width=1024, initial-scale=1, maximum-scale=1, user-scalable=no" />
   <title>محمد طاهرخانی — معرفی</title>
   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;800&display=swap" rel="stylesheet">
   <style>
@@ -19,8 +20,8 @@
       overflow: hidden;
     }
     .outer-circle {
-      width: min(90vw, 550px);
-      height: min(90vw, 550px);
+      width: 550px;
+      height: 550px;
       border-radius: 50%;
       background: linear-gradient(135deg, rgba(124,58,237,0.6), rgba(6,182,212,0.6));
       display: flex;
@@ -46,8 +47,8 @@
       padding: 20px;
     }
     .avatar {
-      width: min(28vw, 150px);
-      height: min(28vw, 150px);
+      width: 150px;
+      height: 150px;
       border-radius: 50%;
       overflow: hidden;
       border: 4px solid rgba(255,255,255,0.2);
@@ -64,19 +65,19 @@
       transform: scale(1.1) rotate(5deg);
     }
     .name {
-      font-size: clamp(18px, 3vw, 28px);
+      font-size: 28px;
       font-weight: 800;
       position: relative;
     }
     .name span {
       display: block;
-      font-size: clamp(14px, 2.5vw, 20px);
+      font-size: 20px;
       font-weight: 400;
       opacity: 0.7;
       margin-top: -4px;
     }
     .email {
-      font-size: clamp(12px, 2vw, 16px);
+      font-size: 16px;
       color: #a0aec0;
       margin-bottom: 15px;
     }
@@ -88,7 +89,7 @@
       color: white;
       font-weight: 600;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
-      font-size: clamp(12px, 2vw, 16px);
+      font-size: 16px;
     }
     .btn-link:hover {
       transform: translateY(-5px);
@@ -159,4 +160,3 @@
   </div>
 </body>
 </html>
-
