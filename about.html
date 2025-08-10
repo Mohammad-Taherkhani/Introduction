@@ -2,252 +2,114 @@
 <html lang="fa" dir="rtl">
 <head>
   <meta charset="utf-8" />
-  <!-- جلوگیری از تغییر مقیاس در موبایل -->
-  <meta name="viewport" content="width=1024, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>درباره من — محمد طاهرخانی</title>
-
-  <!-- Manly font (from OnlineWebFonts) — اضافه شده به درخواست شما. -->
-  <link href="https://db.onlinewebfonts.com/c/9aadb2db83934df77367eb9ce43f8e7e?family=Manly+Man+Font+Regular" rel="stylesheet">
-
-  <!-- Vazirmatn (fallback برای متن فارسی) -->
   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;800&display=swap" rel="stylesheet">
-
   <style>
-    :root{
-      --bg1: #7c3aed;
-      --bg2: #06b6d4;
-      --dark: #0f1724;
-      --card-bg: rgba(15,23,36,0.88);
+    body {
+      margin: 0;
+      background: radial-gradient(circle at 30% 30%, #7c3aed, transparent 60%),
+                  radial-gradient(circle at 70% 70%, #06b6d4, transparent 60%),
+                  #0f1724;
+      font-family: 'Vazirmatn', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
     }
-    html,body{height:100%;margin:0;padding:0;direction:rtl;font-family:"Manly Man Font Regular",'Vazirmatn',system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;}
-    body{
-      background:
-        radial-gradient(circle at 30% 30%, var(--bg1), transparent 60%),
-        radial-gradient(circle at 70% 70%, var(--bg2), transparent 60%),
-        var(--dark);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      overflow:hidden;
+    .container {
+      width: 95vmin;
+      max-width: 700px;
+      background: rgba(15,23,36,0.85);
+      backdrop-filter: blur(10px);
+      border-radius: 25px;
+      padding: 25px;
+      box-shadow: 0 0 40px rgba(124,58,237,0.4), 0 0 60px rgba(6,182,212,0.3);
+      animation: fadeIn 0.8s ease forwards;
+      color: white;
+      text-align: center;
     }
-
-    /* helper to allow triggering animation only when URL has #from-home */
-    #from-home{display:none;}
-
-    /* page wrapper */
-    .page{
-      width:100%;
-      height:100vh;
-      position:relative;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:40px;
-      box-sizing:border-box;
-    }
-
-    /* دایره‌ی مرکزی (متن درباره من داخلش) */
-    .main-circle{
-      width: min(84vw, 640px);
-      height: min(84vw, 640px);
-      max-width: 720px;
-      max-height: 720px;
+    .avatar {
+      width: 28vmin;
+      height: 28vmin;
+      max-width: 150px;
+      max-height: 150px;
       border-radius: 50%;
-      background: linear-gradient(145deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02)), var(--card-bg);
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      color:#fff;
-      padding:36px;
-      box-shadow: 0 20px 60px rgba(2,6,23,0.6), 0 0 90px rgba(124,58,237,0.12);
-      transition: transform 600ms cubic-bezier(.2,.9,.3,1), border-radius 600ms ease;
-      transform-origin:center;
+      overflow: hidden;
+      border: 4px solid rgba(255,255,255,0.2);
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+      margin: 0 auto 15px;
+      transition: transform 0.4s ease;
     }
-
-    /* morph-on-load: وقتی صفحه با fragment باز شد (about.html#from-home) انیمیشن اجرا میشه */
-    #from-home:target + .page .main-circle{
-      animation: morphIn 900ms cubic-bezier(.2,.9,.3,1) both;
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
-    @keyframes morphIn{
-      0%{
-        transform: scale(0.12) translateZ(0);
-        opacity: 0;
-        border-radius: 50%;
-        filter: blur(10px) saturate(.7);
+    .avatar:hover {
+      transform: scale(1.1) rotate(5deg);
+    }
+    h1 {
+      font-size: clamp(20px, 3vw, 28px);
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+    h1 span {
+      display: block;
+      font-size: clamp(14px, 2.5vw, 20px);
+      font-weight: 400;
+      opacity: 0.7;
+    }
+    p {
+      font-size: clamp(14px, 2vw, 16px);
+      line-height: 1.8;
+      text-align: justify;
+      margin-bottom: 20px;
+    }
+    .btn-back {
+      display: inline-block;
+      padding: 10px 20px;
+      background: linear-gradient(90deg, #7c3aed, #06b6d4);
+      border-radius: 999px;
+      text-decoration: none;
+      color: white;
+      font-weight: 600;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      font-size: clamp(12px, 2vw, 16px);
+    }
+    .btn-back:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(6,182,212,0.4);
+    }
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: scale(0.95); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+    @media (max-width: 480px) {
+      .container {
+        width: 95%;
+        padding: 20px;
       }
-      55%{
-        transform: scale(1.08) translateZ(0);
-        opacity: 1;
-        border-radius: 36%;
-        filter: blur(0px) saturate(1.05);
+      .avatar {
+        width: 24vmin;
+        height: 24vmin;
       }
-      100%{
-        transform: scale(1) translateZ(0);
-        border-radius: 50%;
-        filter: none;
-      }
-    }
-
-    .main-circle h1{
-      margin:0 0 8px 0;
-      font-size: clamp(20px, 3.6vw, 34px);
-      font-weight:800;
-      letter-spacing:0.6px;
-    }
-    .main-circle p{
-      margin:0;
-      max-width: 58ch;
-      line-height:1.6;
-      font-size: clamp(14px, 2vw, 18px);
-      opacity:0.95;
-      font-weight:400;
-    }
-
-    /* محل مهارت ها: کل صفحه پیرامون دایره */
-    .skills{
-      position:absolute;
-      inset:0;
-      pointer-events:none;
-    }
-
-    /* هر یک دایره‌ی مهارت */
-    .skill{
-      --size: clamp(86px, 9.6vw, 120px);
-      position:absolute;
-      left: var(--x, 50%);
-      top: var(--y, 50%);
-      transform: translate(-50%,-50%) scale(0);
-      width: var(--size);
-      height: var(--size);
-      min-width:64px;
-      min-height:64px;
-      border-radius:50%;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      padding:8px;
-      box-sizing:border-box;
-      color:white;
-      font-weight:600;
-      line-height:1.05;
-      font-size: clamp(11px, 1.6vw, 14px);
-      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
-      box-shadow: 0 8px 22px rgba(2,6,23,0.45);
-      cursor:pointer;
-      pointer-events:auto;
-      user-select:none;
-      transition: transform 300ms cubic-bezier(.2,.9,.3,1), box-shadow 300ms ease;
-      z-index: 5;
-      animation: popIn 700ms cubic-bezier(.2,.9,.3,1) var(--delay,0s) both;
-    }
-
-    .skill[data-float="true"]{
-      animation-name: popIn;
-      animation-fill-mode: both;
-    }
-
-    @keyframes popIn{
-      0%{ transform: translate(-50%,-50%) scale(0); opacity:0; }
-      60%{ transform: translate(-50%,-50%) scale(1.12); opacity:1; }
-      100%{ transform: translate(-50%,-50%) scale(1); opacity:1; }
-    }
-
-    @keyframes floatA{
-      0%{ top: calc(var(--y) - 8px); left: calc(var(--x) - 6px); }
-      50%{ top: calc(var(--y) + 10px); left: calc(var(--x) + 6px); }
-      100%{ top: calc(var(--y) - 8px); left: calc(var(--x) - 6px); }
-    }
-    @keyframes floatB{
-      0%{ top: calc(var(--y) + 6px); left: calc(var(--x) + 6px); }
-      50%{ top: calc(var(--y) - 10px); left: calc(var(--x) - 6px); }
-      100%{ top: calc(var(--y) + 6px); left: calc(var(--x) + 6px); }
-    }
-
-    .skill.float-slow{ animation-name: popIn; animation-duration: 700ms; animation-fill-mode: both; animation-delay: var(--delay,0s); animation-timing-function: cubic-bezier(.2,.9,.3,1); }
-    .skill.float-slow[data-float="true"]{ animation-name: popIn; }
-    .skill.f1 { animation: popIn 700ms cubic-bezier(.2,.9,.3,1) var(--delay,0s) both; animation-fill-mode: both; }
-
-    .skill[data-float="true"]{
-      animation: popIn 700ms cubic-bezier(.2,.9,.3,1) var(--delay,0s) both,
-                 floatA var(--float,6s) ease-in-out calc(var(--delay,0s) + 0.65s) infinite;
-    }
-    .skill.altFloat[data-float="true"]{
-      animation: popIn 700ms cubic-bezier(.2,.9,.3,1) var(--delay,0s) both,
-                 floatB var(--float,5.2s) ease-in-out calc(var(--delay,0s) + 0.65s) infinite;
-    }
-
-    .skill::after{
-      content:"";
-      position:absolute;
-      inset:0;
-      border-radius:50%;
-      background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.00) 45%);
-      transform: scale(0.85);
-      opacity:0;
-      transition: transform 240ms ease, opacity 240ms ease;
-      z-index:-1;
-    }
-    .skill:hover{
-      transform: translate(-50%,-50%) scale(1.45) rotate(-4deg);
-      box-shadow: 0 30px 70px rgba(6,182,212,0.16);
-    }
-    .skill:hover::after{
-      transform: scale(1.7);
-      opacity:1;
-      transition-timing-function: cubic-bezier(.2,.9,.3,1);
-    }
-
-    @media (max-width:520px){
-      .main-circle{ padding:20px; width:88vw;height:88vw; }
-      .skill{ --size: clamp(58px, 14vw, 86px); font-size:12px; }
-    }
-
-    .back-link{
-      margin-top:18px;
-      display:inline-block;
-      text-decoration:none;
-      color:#0f1724;
-      background: linear-gradient(90deg,var(--bg1),var(--bg2));
-      padding:8px 14px;
-      border-radius:999px;
-      font-weight:700;
-      box-shadow: 0 10px 30px rgba(6,182,212,0.12);
-      color:white;
     }
   </style>
 </head>
 <body>
-  <div id="from-home"></div>
-  <div class="page">
-    <div class="main-circle" role="region" aria-label="درباره من">
-      <h1>درباره من</h1>
-      <p>
-        من یک فرد پرشور و علاقه‌مند به دنیای تکنولوژی و خلاقیت هستم که همیشه مشتاق یادگیری و کشف چیزهای جدیدم. 
-        با دستانی پر از تجربه در کار با نرم‌افزارهای مختلف، دوست دارم با انرژی مثبت و دیدگاهی نو، به چالش‌های جدید بپردازم و ایده‌ها رو به واقعیت تبدیل کنم. 
-        اگه دنبال یه همکار پرانرژی و مشتاق هستید که همیشه آماده‌ست تا بهترین خودش رو ارائه بده، فکر می‌کنم گزینه خوبی هستم.
-      </p>
-      <a class="back-link" href="index.html" aria-label="بازگشت به صفحه اصلی">بازگشت به صفحه اصلی</a>
+  <div class="container">
+    <div class="avatar">
+      <img src="profile.jpg" alt="محمد طاهرخانی">
     </div>
-    <div class="skills" aria-hidden="false">
-      <div class="skill altFloat" data-float="true" style="--x:12%; --y:18%; --delay:0.05s; --float:6.6s;">After Effects</div>
-      <div class="skill"      data-float="true" style="--x:26%; --y:8%;  --delay:0.10s; --float:5.8s;">Corel Draw</div>
-      <div class="skill altFloat" data-float="true" style="--x:44%; --y:6%;  --delay:0.14s; --float:7.2s;">Microsoft Visual Studio</div>
-      <div class="skill"      data-float="true" style="--x:70%; --y:8%;  --delay:0.18s; --float:6.0s;">C++</div>
-      <div class="skill altFloat" data-float="true" style="--x:86%; --y:18%; --delay:0.22s; --float:5.4s;">Figma</div>
-      <div class="skill"      data-float="true" style="--x:88%; --y:36%; --delay:0.26s; --float:6.8s;">Linux</div>
-      <div class="skill altFloat" data-float="true" style="--x:80%; --y:54%; --delay:0.30s; --float:5.6s;">CodeVision</div>
-      <div class="skill"      data-float="true" style="--x:68%; --y:72%; --delay:0.34s; --float:6.2s;">Adobe Illustrator</div>
-      <div class="skill altFloat" data-float="true" style="--x:52%; --y:84%; --delay:0.38s; --float:5.8s;">Adobe Premiere</div>
-      <div class="skill"      data-float="true" style="--x:34%; --y:86%; --delay:0.42s; --float:6.4s;">C#</div>
-      <div class="skill altFloat" data-float="true" style="--x:18%; --y:72%; --delay:0.46s; --float:5.2s;">Electronics</div>
-      <div class="skill"      data-float="true" style="--x:8%;  --y:54%; --delay:0.50s; --float:6.0s;">Arduino</div>
-      <div class="skill altFloat" data-float="true" style="--x:12%; --y:36%; --delay:0.54s; --float:6.8s;">esp32</div>
-      <div class="skill"      data-float="true" style="--x:25%; --y:30%; --delay:0.58s; --float:5.4s;">Blockchain</div>
-      <div class="skill altFloat" data-float="true" style="--x:85%; --y:75%; --delay:0.62s; --float:6.6s;">Godot Engine</div>
-    </div>
+    <h1>محمد طاهرخانی <span>Mohammad Taherkhani</span></h1>
+    <p>
+      اینجا می‌توانید توضیحاتی درباره من قرار دهید.  
+      مثلا علاقه‌مندی‌ها، سوابق کاری، مهارت‌ها و هر آنچه که دوست دارید دیگران درباره شما بدانند.  
+      این متن به صورت ریسپانسیو طراحی شده تا در موبایل و دسکتاپ به‌درستی نمایش داده شود.
+    </p>
+    <a href="index.html" class="btn-back">بازگشت به صفحه اصلی</a>
   </div>
 </body>
 </html>
