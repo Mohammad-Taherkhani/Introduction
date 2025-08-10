@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>درباره من — محمد طاهرخانی</title>
+
+  <!-- Manly font (from OnlineWebFonts) — اضافه شده به درخواست شما. -->
+  <!-- منبع: OnlineWebFonts (این لینک را سایت خودش برای استفاده وب پیشنهاد می‌دهد). -->
+  <link href="https://db.onlinewebfonts.com/c/9aadb2db83934df77367eb9ce43f8e7e?family=Manly+Man+Font+Regular" rel="stylesheet"> <!-- :contentReference[oaicite:2]{index=2} -->
+
+  <!-- Vazirmatn (fallback برای متن فارسی) -->
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg1: #7c3aed;
+      --bg2: #06b6d4;
+      --dark: #0f1724;
+      --card-bg: rgba(15,23,36,0.88);
+    }
+    html,body{height:100%;margin:0;padding:0;direction:rtl;font-family:"Manly Man Font Regular",'Vazirmatn',system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;}
+    body{
+      background:
+        radial-gradient(circle at 30% 30%, var(--bg1), transparent 60%),
+        radial-gradient(circle at 70% 70%, var(--bg2), transparent 60%),
+        var(--dark);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+    }
+
+    /* helper to allow triggering animation only when URL has #from-home */
+    #from-home{display:none;}
+
+    /* page wrapper */
+    .page{
+      width:100%;
+      height:100vh;
+      position:relative;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:40px;
+      box-sizing:border-box;
+    }
+
+    /* دایره‌ی مرکزی (متن درباره من داخلش) */
+    .main-circle{
+      width: min(84vw, 640px);
+      height: min(84vw, 640px);
+      max-width: 720px;
+      max-height: 720px;
+      border-radius: 50%;
+      background: linear-gradient(145deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02)), var(--card-bg);
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      color:#fff;
+      padding:36px;
+      box-shadow: 0 20px 60px rgba(2,6,23,0.6), 0 0 90px rgba(124,58,237,0.12);
+      transition: transform 600ms cubic-bezier(.2,.9,.3,1), border-radius 600ms ease;
+      transform-origin:center;
+    }
+
+    /* morph-on-load: وقتی صفحه با fragment باز شد (about.html#from-home) انیمیشن اجرا میشه */
+    #from-home:target + .page .main-circle{
+      animation: morphIn 900ms cubic-bezier(.2,.9,.3,1) both;
+    }
+    @keyframes morphIn{
+      0%{
+        transform: scale(0.12) translateZ(0);
+        opacity: 0;
+        border-radius: 50%;
+        filter: blur(10px) saturate(.7);
+      }
+      55%{
+        transform: scale(1.08) translateZ(0);
+        opacity: 1;
+        border-radius: 36%;
+        filter: blur(0px) saturate(1.05);
+      }
+      100%{
+        transform: scale(1) translateZ(0);
+        border-radius: 50%;
+        filter: none;
+      }
+    }
+
+    .main-circle h1{
+      margin:0 0 8px 0;
+      font-size: clamp(20px, 3.6vw, 34px);
+      font-weight:800;
+      letter-spacing:0.6px;
+    }
+    .main-circle p{
+      margin:0;
+      max-width: 58ch;
+      line-height:1.6;
+      font-size: clamp(14px, 2vw, 18px);
+      opacity:0.95;
+      font-weight:400;
+    }
+
+    /* محل مهارت ها: کل صفحه پیرامون دایره */
+    .skills{
+      position:absolute;
+      inset:0;
+      pointer-events:none; /* خود skill ها pointer دارند */
+    }
+
+    /* هر یک دایره‌ی مهارت */
+    .skill{
+      --size: clamp(86px, 9.6vw, 120px);
+      position:absolute;
+      left: var(--x, 50%);
+      top: var(--y, 50%);
+      transform: translate(-50%,-50%) scale(0);
+      width: var(--size);
+      height: var(--size);
+      min-width:64px;
+      min-height:64px;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:8px;
+      box-sizing:border-box;
+      color:white;
+      font-weight:600;
+      line-height:1.05;
+      font-size: clamp(11px, 1.6vw, 14px);
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+      box-shadow: 0 8px 22px rgba(2,6,23,0.45);
+      cursor:pointer;
+      pointer-events:auto;
+      user-select:none;
+      transition: transform 300ms cubic-bezier(.2,.9,.3,1), box-shadow 300ms ease;
+      z-index: 5;
+      /* animation: popIn then keep floating by animating 'top' */
+      animation: popIn 700ms cubic-bezier(.2,.9,.3,1) var(--delay,0s) both;
+    }
+
+    /* موج شناور (float) با تغییر top کوچک (ممکن است واحد درصد + px داشته باشد) */
+    .skill[data-float="true"]{
+      animation-name: popIn;
+      animation-fill-mode: both;
+    }
+    /* برای هر آیتم، از یک animation-delay استفاده کن تا دونه‌دونه pop کنند (با inline style) */
+
+    @keyframes popIn{
+      0%{ transform: translate(-50%,-50%) scale(0); opacity:0; }
+      60%{ transform: translate(-50%,-50%) scale(1.12); opacity:1; }
+      100%{ transform: translate(-50%,-50%) scale(1); opacity:1; }
+    }
+
+    /* float animation با استفاده از تغییر top و left جزئی (روی کلیدهای متفاوت زمان) */
+    @keyframes floatA{
+      0%{ top: calc(var(--y) - 8px); left: calc(var(--x) - 6px); }
+      50%{ top: calc(var(--y) + 10px); left: calc(var(--x) + 6px); }
+      100%{ top: calc(var(--y) - 8px); left: calc(var(--x) - 6px); }
+    }
+    @keyframes floatB{
+      0%{ top: calc(var(--y) + 6px); left: calc(var(--x) + 6px); }
+      50%{ top: calc(var(--y) - 10px); left: calc(var(--x) - 6px); }
+      100%{ top: calc(var(--y) + 6px); left: calc(var(--x) + 6px); }
+    }
+
+    /* اختصاصی: هر skill بعد از pop ظاهر شده، با انیمیشن float نامحدود حرکت می‌کند.
+       مقدار delay و float-duration را با inline style برای هر عنصر تعیین کرده‌ایم. */
+    .skill.float-slow{ animation-name: popIn; animation-duration: 700ms; animation-fill-mode: both; animation-delay: var(--delay,0s); animation-timing-function: cubic-bezier(.2,.9,.3,1); }
+    .skill.float-slow[data-float="true"]{ animation-name: popIn; }
+    .skill.f1 { animation: popIn 700ms cubic-bezier(.2,.9,.3,1) var(--delay,0s) both; animation-fill-mode: both; }
+    /* بعد از popIn، از یک animation جدا برای float استفاده می‌کنیم با animation-play-state running به کمک animation shorthand دوبل */
+    .skill[data-float="true"]{
+      animation: popIn 700ms cubic-bezier(.2,.9,.3,1) var(--delay,0s) both,
+                 floatA var(--float,6s) ease-in-out calc(var(--delay,0s) + 0.65s) infinite;
+    }
+    /* variant برای برخی آیتم‌ها */
+    .skill.altFloat[data-float="true"]{
+      animation: popIn 700ms cubic-bezier(.2,.9,.3,1) var(--delay,0s) both,
+                 floatB var(--float,5.2s) ease-in-out calc(var(--delay,0s) + 0.65s) infinite;
+    }
+
+    /* hover: بزرگ شدن (explode) + موج شعاعی */
+    .skill::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      border-radius:50%;
+      background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.00) 45%);
+      transform: scale(0.85);
+      opacity:0;
+      transition: transform 240ms ease, opacity 240ms ease;
+      z-index:-1;
+    }
+    .skill:hover{
+      transform: translate(-50%,-50%) scale(1.45) rotate(-4deg);
+      box-shadow: 0 30px 70px rgba(6,182,212,0.16);
+    }
+    .skill:hover::after{
+      transform: scale(1.7);
+      opacity:1;
+      transition-timing-function: cubic-bezier(.2,.9,.3,1);
+    }
+
+    /* واکنش‌گرایی: اگر صفحه خیلی کوچک شد، skillها کوچکتر بشن */
+    @media (max-width:520px){
+      .main-circle{ padding:20px; width:88vw;height:88vw; }
+      .skill{ --size: clamp(58px, 14vw, 86px); font-size:12px; }
+    }
+
+    /* لینک برگشت ساده */
+    .back-link{
+      margin-top:18px;
+      display:inline-block;
+      text-decoration:none;
+      color:#0f1724;
+      background: linear-gradient(90deg,var(--bg1),var(--bg2));
+      padding:8px 14px;
+      border-radius:999px;
+      font-weight:700;
+      box-shadow: 0 10px 30px rgba(6,182,212,0.12);
+      color:white;
+    }
+  </style>
+</head>
+<body>
+  <!-- وقتی لینکِ صفحه‌ی اول اینطوری باشه: <a href="about.html#from-home">...</a>
+       مرورگر در about.html عنصر با id="from-home" را تارجت می‌کند و انیمیشن morph اجرا می‌شود. -->
+  <div id="from-home"></div>
+
+  <div class="page">
+    <div class="main-circle" role="region" aria-label="درباره من">
+      <h1>درباره من</h1>
+      <p>
+        من یک فرد پرشور و علاقه‌مند به دنیای تکنولوژی و خلاقیت هستم که همیشه مشتاق یادگیری و کشف چیزهای جدیدم. 
+        با دستانی پر از تجربه در کار با نرم‌افزارهای مختلف، دوست دارم با انرژی مثبت و دیدگاهی نو، به چالش‌های جدید بپردازم و ایده‌ها رو به واقعیت تبدیل کنم. 
+        اگه دنبال یه همکار پرانرژی و مشتاق هستید که همیشه آماده‌ست تا بهترین خودش رو ارائه بده، فکر می‌کنم گزینه خوبی هستم.
+      </p>
+
+      <!-- اختیاری: لینک برگشت -->
+      <a class="back-link" href="index.html" aria-label="بازگشت به صفحه اصلی">بازگشت به صفحه اصلی</a>
+    </div>
+
+    <!-- مهارت‌ها (هر عنصر با --x و --y موقعیت‌دهی شده؛ --delay برای stagger ظاهر شدن؛ --float طول دوره‌ی شناوری) -->
+    <div class="skills" aria-hidden="false">
+      <!-- نمونه‌ها: مقادیر درصدی طوری انتخاب شده‌اند که در اطراف دایره پراکنده باشن -->
+      <div class="skill altFloat" data-float="true" style="--x:12%; --y:18%; --delay:0.05s; --float:6.6s;">After Effects</div>
+      <div class="skill"      data-float="true" style="--x:26%; --y:8%;  --delay:0.10s; --float:5.8s;">Corel Draw</div>
+      <div class="skill altFloat" data-float="true" style="--x:44%; --y:6%;  --delay:0.14s; --float:7.2s;">Microsoft Visual Studio</div>
+      <div class="skill"      data-float="true" style="--x:70%; --y:8%;  --delay:0.18s; --float:6.0s;">C++</div>
+      <div class="skill altFloat" data-float="true" style="--x:86%; --y:18%; --delay:0.22s; --float:5.4s;">Figma</div>
+
+      <div class="skill"      data-float="true" style="--x:88%; --y:36%; --delay:0.26s; --float:6.8s;">Linux</div>
+      <div class="skill altFloat" data-float="true" style="--x:80%; --y:54%; --delay:0.30s; --float:5.6s;">CodeVision</div>
+      <div class="skill"      data-float="true" style="--x:68%; --y:72%; --delay:0.34s; --float:6.2s;">Adobe Illustrator</div>
+      <div class="skill altFloat" data-float="true" style="--x:52%; --y:84%; --delay:0.38s; --float:5.8s;">Adobe Premiere</div>
+      <div class="skill"      data-float="true" style="--x:34%; --y:86%; --delay:0.42s; --float:6.4s;">C#</div>
+
+      <div class="skill altFloat" data-float="true" style="--x:18%; --y:72%; --delay:0.46s; --float:5.2s;">Electronics</div>
+      <div class="skill"      data-float="true" style="--x:8%;  --y:54%; --delay:0.50s; --float:6.0s;">Arduino</div>
+      <div class="skill altFloat" data-float="true" style="--x:12%; --y:36%; --delay:0.54s; --float:6.8s;">esp32</div>
+      <div class="skill"      data-float="true" style="--x:25%; --y:30%; --delay:0.58s; --float:5.4s;">Blockchain</div>
+      <div class="skill altFloat" data-float="true" style="--x:85%; --y:75%; --delay:0.62s; --float:6.6s;">Godot Engine</div>
+    </div>
+  </div>
+</body>
+</html>
