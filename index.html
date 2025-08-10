@@ -1,29 +1,161 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fa" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>صفحه معرفی من</title>
-    <link rel="stylesheet" href="styles/style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>محمد طاهرخانی — معرفی</title>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      background: radial-gradient(circle at 30% 30%, #7c3aed, transparent 60%),
+                  radial-gradient(circle at 70% 70%, #06b6d4, transparent 60%),
+                  #0f1724;
+      font-family: 'Vazirmatn', sans-serif;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+    .outer-circle {
+      width: min(90vw, 550px);
+      height: min(90vw, 550px);
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(124,58,237,0.6), rgba(6,182,212,0.6));
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: pulse 4s ease-in-out infinite;
+      box-shadow: 0 0 40px rgba(124,58,237,0.4), 0 0 60px rgba(6,182,212,0.3);
+    }
+    .inner-circle {
+      width: 80%;
+      height: 80%;
+      border-radius: 50%;
+      background: rgba(15,23,36,0.85);
+      backdrop-filter: blur(10px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: #fff;
+      animation: popIn 1s ease forwards;
+      position: relative;
+      padding: 20px;
+    }
+    .avatar {
+      width: min(28vw, 150px);
+      height: min(28vw, 150px);
+      border-radius: 50%;
+      overflow: hidden;
+      border: 4px solid rgba(255,255,255,0.2);
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+      margin-bottom: 15px;
+      transition: transform 0.4s ease;
+    }
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .avatar:hover {
+      transform: scale(1.1) rotate(5deg);
+    }
+    .name {
+      font-size: clamp(18px, 3vw, 28px);
+      font-weight: 800;
+      position: relative;
+    }
+    .name span {
+      display: block;
+      font-size: clamp(14px, 2.5vw, 20px);
+      font-weight: 400;
+      opacity: 0.7;
+      margin-top: -4px;
+    }
+    .email {
+      font-size: clamp(12px, 2vw, 16px);
+      color: #a0aec0;
+      margin-bottom: 15px;
+    }
+    .btn-link {
+      padding: 10px 20px;
+      background: linear-gradient(90deg, #7c3aed, #06b6d4);
+      border-radius: 999px;
+      text-decoration: none;
+      color: white;
+      font-weight: 600;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      font-size: clamp(12px, 2vw, 16px);
+    }
+    .btn-link:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(6,182,212,0.4);
+    }
+    .socials {
+      display: flex;
+      gap: 20px;
+      position: absolute;
+      bottom: -50px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .s-icon {
+      width: 70px;
+      height: 70px;
+      border-radius: 15px;
+      background: rgba(255,255,255,0.05);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .s-icon:hover {
+      transform: translateY(-8px) scale(1.15);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.35);
+    }
+    .s-icon img {
+      width: 40px;
+      height: 40px;
+    }
+    @keyframes popIn {
+      0% { transform: scale(0); opacity: 0; }
+      60% { transform: scale(1.1); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+  </style>
 </head>
 <body>
-
-    <div class="card">
-        <img src="profile.jpg" alt="عکس پروفایل" class="profile-img">
-        <h1>محمد طاهرخانی</h1>
-        <p class="title">مهندس IT</p>
-        <p class="bio-text">
-            من یک فرد پرشور و علاقه‌مند به دنیای تکنولوژی و خلاقیت هستم که همیشه مشتاق یادگیری و کشف چیزهای جدیدم. با
-            دستانی پر از تجربه در کار با نرم‌افزارهای مختلف، دوست دارم با انرژی مثبت و دیدگاهی نو، به چالش‌های جدید بپردازم و
-            ایده‌ها رو به واقعیت تبدیل کنم. اگه دنبال یه همکار پرانرژی و مشتاق هستید که همیشه آماده‌ست تا بهترین خودش رو
-            ارائه بده، فکر می‌کنم گزینه خوبی هستم.
-        </p>
-        <div class="social-links">
-            <a href="#">LinkedIn</a>
-            <a href="#">GitHub</a>
-            <a href="#">ایمیل</a>
-        </div>
+  <div class="outer-circle">
+    <div class="inner-circle">
+      <div class="avatar">
+        <img src="profile.jpg" alt="محمد طاهرخانی">
+      </div>
+      <div class="name">محمد طاهرخانی <span>Mohammad Taherkhani</span></div>
+      <div class="email">taherkhani.mhmmd@gmail.com</div>
+      <a href="about.html#from-home" class="btn-link" target="_self">معرفی کامل و رزومه</a>
+      <div class="socials">
+        <a href="https://t.me/username" class="s-icon" target="_blank">
+          <img src="telegram.png" alt="Telegram">
+        </a>
+        <a href="https://github.com/username" class="s-icon" target="_blank">
+          <img src="github.png" alt="GitHub">
+        </a>
+        <a href="https://www.linkedin.com/in/username" class="s-icon" target="_blank">
+          <img src="linkedin.png" alt="LinkedIn">
+        </a>
+        <a href="https://www.instagram.com/username" class="s-icon" target="_blank">
+          <img src="instagram.png" alt="Instagram">
+        </a>
+      </div>
     </div>
-
+  </div>
 </body>
 </html>
