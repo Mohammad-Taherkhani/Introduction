@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>نمونه‌کارها - محمد طاهرخانی</title>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      background: radial-gradient(circle at 30% 30%, #7c3aed, transparent 60%),
+                  radial-gradient(circle at 70% 70%, #06b6d4, transparent 60%),
+                  #0f1724;
+      font-family: 'Vazirmatn', sans-serif;
+      min-height: 100vh;
+      color: white;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .container {
+      max-width: 900px;
+      width: 100%;
+    }
+    h1 {
+      font-size: 28px;
+      text-align: center;
+      margin: 30px 0;
+      text-shadow: 0 0 8px rgba(6,182,212,0.6);
+    }
+    h2 {
+      font-size: 22px;
+      margin: 30px 0 20px;
+      text-shadow: 0 0 6px rgba(124,58,237,0.6);
+      text-align: center;
+    }
+    .section {
+      margin-bottom: 50px;
+    }
+    .grid {
+      display: grid;
+      gap: 20px;
+      justify-content: center;
+    }
+    /* قالب کلی کارت */
+    .card {
+      background: rgba(15,23,36,0.85);
+      border-radius: 16px;
+      padding: 12px;
+      box-shadow: 0 0 20px rgba(124,58,237,0.3);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    /* ویدیوها */
+    .video-card video {
+      width: 100%;
+      max-width: 420px;
+      border-radius: 12px;
+      display: block;
+      aspect-ratio: 9/16;
+    }
+    .video-card {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+    }
+    .play-btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: linear-gradient(135deg, #7c3aed, #06b6d4);
+      border: none;
+      border-radius: 50%;
+      width: 100px;
+      height: 100px;
+      font-size: 40px;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 0 15px rgba(6,182,212,0.6);
+    }
+    /* طراحی گرافیک */
+    .graphic-card img {
+      width: 100%;
+      max-width: 420px;
+      display: block;
+      border-radius: 12px;
+      cursor: pointer;
+      aspect-ratio: 9/16;
+      object-fit: cover;
+      box-shadow: 0 0 15px rgba(124,58,237,0.3);
+    }
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+    }
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 12px;
+    }
+    /* الکترونیک */
+    .electronics-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      justify-content: center;
+    }
+    .electronics-card img {
+      width: 100%;
+      border-radius: 12px;
+      margin-bottom: 10px;
+    }
+    .electronics-title {
+      font-size: 16px;
+      margin: 8px 0;
+      text-align: center;
+    }
+    .project-link {
+      display: inline-block;
+      padding: 8px 15px;
+      border-radius: 50px;
+      background: linear-gradient(135deg, #7c3aed, #06b6d4);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      color: white;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 12px rgba(124,58,237,0.4);
+    }
+    .project-link:hover {
+      background: linear-gradient(135deg, #06b6d4, #7c3aed);
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(6,182,212,0.6);
+    }
+    .electronics-card.landscape img {
+      aspect-ratio: 16/9;
+      object-fit: cover;
+    }
+    .electronics-card.portrait img {
+      aspect-ratio: 9/16;
+      object-fit: cover;
+    }
+    @media (max-width: 768px) {
+      .electronics-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    @media (min-width: 768px) {
+      .video-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .graphic-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>نمونه‌کارها</h1>
+
+    <!-- ادیت ویدیو -->
+    <div class="section">
+      <h2>🎬 ادیت ویدیو</h2>
+      <div class="grid video-grid">
+        <div class="card video-card">
+          <video src="Assets/video1.mp4"></video>
+          <button class="play-btn">▶</button>
+        </div>
+        <div class="card video-card">
+          <video src="Assets/video2.mp4"></video>
+          <button class="play-btn">▶</button>
+        </div>
+        <div class="card video-card">
+          <video src="Assets/video3.mp4"></video>
+          <button class="play-btn">▶</button>
+        </div>
+        <div class="card video-card">
+          <video src="Assets/video4.mp4"></video>
+          <button class="play-btn">▶</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- طراحی گرافیک -->
+    <div class="section">
+      <h2>🎨 طراحی گرافیک</h2>
+      <div class="grid graphic-grid">
+        <div class="card graphic-card">
+          <img src="Assets/graphic1.jpg" alt="طراحی 1">
+        </div>
+        <div class="card graphic-card">
+          <img src="Assets/graphic2.jpg" alt="طراحی 2">
+        </div>
+      </div>
+    </div>
+
+    <!-- الکترونیک -->
+    <div class="section">
+      <h2>🔌 الکترونیک</h2>
+      <div class="electronics-grid">
+        <div class="card electronics-card landscape">
+          <img src="Assets/elec1.jpg" alt="پروژه 1">
+          <div class="electronics-title">پروژه اول</div>
+          <a href="project1.html" class="project-link">مشاهده پروژه</a>
+        </div>
+        <div class="card electronics-card landscape">
+          <img src="Assets/elec2.jpg" alt="پروژه 2">
+          <div class="electronics-title">پروژه دوم</div>
+          <a href="project2.html" class="project-link">مشاهده پروژه</a>
+        </div>
+        <div class="card electronics-card portrait">
+          <img src="Assets/elec3.jpg" alt="پروژه 3">
+          <div class="electronics-title">پروژه سوم</div>
+          <a href="project3.html" class="project-link">مشاهده پروژه</a>
+        </div>
+        <div class="card electronics-card portrait">
+          <img src="Assets/elec4.jpg" alt="پروژه 4">
+          <div class="electronics-title">پروژه چهارم</div>
+          <a href="project4.html" class="project-link">مشاهده پروژه</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- لایت باکس -->
+  <div class="lightbox" id="lightbox">
+    <img src="" alt="نمایش بزرگ">
+  </div>
+
+  <script>
+    // پخش ویدیو
+    document.querySelectorAll('.video-card').forEach(card => {
+      const video = card.querySelector('video');
+      const btn = card.querySelector('.play-btn');
+      btn.addEventListener('click', () => {
+        if (video.paused) {
+          video.play();
+          video.muted = false;
+          btn.style.display = 'none';
+        }
+      });
+      video.addEventListener('pause', () => btn.style.display = 'block');
+      video.addEventListener('ended', () => btn.style.display = 'block');
+    });
+
+    // لایت باکس طراحی گرافیک
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = lightbox.querySelector('img');
+    document.querySelectorAll('.graphic-card img').forEach(img => {
+      img.addEventListener('click', () => {
+        lightbox.style.display = 'flex';
+        lightboxImg.src = img.src;
+      });
+    });
+    lightbox.addEventListener('click', () => {
+      lightbox.style.display = 'none';
+      lightboxImg.src = '';
+    });
+  </script>
+</body>
+</html>
