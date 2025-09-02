@@ -6,6 +6,13 @@
   <title>نمونه‌کارها - محمد طاهرخانی</title>
   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;800&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --video-aspect: 9/16;     /* نسبت ویدیوها */
+      --graphic-aspect: 9/16;   /* نسبت طراحی گرافیک */
+      --landscape-aspect: 16/9; /* نسبت پروژه‌های الکترونیک افقی */
+      --portrait-aspect: 9/16;  /* نسبت پروژه‌های الکترونیک عمودی */
+    }
+
     body {
       margin: 0;
       background: radial-gradient(circle at 30% 30%, #7c3aed, transparent 60%),
@@ -20,7 +27,7 @@
       align-items: center;
     }
     .container {
-      max-width: 900px;
+      max-width: 1100px;
       width: 100%;
     }
     h1 {
@@ -38,12 +45,8 @@
     .section {
       margin-bottom: 50px;
     }
-    .grid {
-      display: grid;
-      gap: 20px;
-      justify-content: center;
-    }
-    /* قالب کلی کارت */
+
+    /* کارت کلی */
     .card {
       background: rgba(15,23,36,0.85);
       border-radius: 16px;
@@ -53,13 +56,13 @@
       flex-direction: column;
       align-items: center;
     }
+
     /* ویدیوها */
-    .video-card video {
-      width: 100%;
-      max-width: 420px;
-      border-radius: 12px;
-      display: block;
-      aspect-ratio: 9/16;
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      justify-content: center;
     }
     .video-card {
       position: relative;
@@ -67,6 +70,13 @@
       overflow: hidden;
       display: flex;
       justify-content: center;
+    }
+    .video-card video {
+      width: 100%;
+      border-radius: 12px;
+      display: block;
+      aspect-ratio: var(--video-aspect);
+      cursor: pointer;
     }
     .play-btn {
       position: absolute;
@@ -76,21 +86,32 @@
       background: linear-gradient(135deg, #7c3aed, #06b6d4);
       border: none;
       border-radius: 50%;
-      width: 100px;
-      height: 100px;
-      font-size: 40px;
+      width: 90px;
+      height: 90px;
+      font-size: 38px;
       color: white;
       cursor: pointer;
       box-shadow: 0 0 15px rgba(6,182,212,0.6);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
+    .play-btn:hover {
+      transform: translate(-50%, -50%) scale(1.15);
+      box-shadow: 0 0 25px rgba(124,58,237,0.8);
+    }
+
     /* طراحی گرافیک */
+    .graphic-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 50px;
+      justify-content: center;
+    }
     .graphic-card img {
       width: 100%;
-      max-width: 420px;
       display: block;
       border-radius: 12px;
       cursor: pointer;
-      aspect-ratio: 9/16;
+      aspect-ratio: var(--graphic-aspect);
       object-fit: cover;
       box-shadow: 0 0 15px rgba(124,58,237,0.3);
     }
@@ -108,71 +129,129 @@
       max-height: 90%;
       border-radius: 12px;
     }
+
     /* الکترونیک */
     .electronics-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(2, 1fr);
       gap: 20px;
       justify-content: center;
     }
-    .electronics-card img {
-      width: 100%;
-      border-radius: 12px;
-      margin-bottom: 10px;
-    }
-    .electronics-title {
-      font-size: 16px;
-      margin: 8px 0;
+    .electronic-card {
+      background: rgba(15,23,36,0.85);
+      border-radius: 16px;
+      padding: 12px;
+      box-shadow: 0 0 20px rgba(124,58,237,0.3);
       text-align: center;
     }
-    .project-link {
+    .electronic-card img {
+      width: 100%;
+      border-radius: 12px;
+      display: block;
+      margin-bottom: 10px;
+      object-fit: cover;
+    }
+    .electronic-card.landscape img {
+      aspect-ratio: var(--landscape-aspect);
+    }
+    .electronic-card.portrait img {
+      aspect-ratio: var(--portrait-aspect);
+    }
+    .electronic-card .btn {
       display: inline-block;
-      padding: 8px 15px;
-      border-radius: 50px;
+      margin-top: 8px;
+      padding: 8px 20px;
+      border-radius: 20px;
       background: linear-gradient(135deg, #7c3aed, #06b6d4);
-      text-decoration: none;
+      color: white;
       font-size: 14px;
       font-weight: 600;
-      color: white;
+      text-decoration: none;
       transition: all 0.3s ease;
-      box-shadow: 0 0 12px rgba(124,58,237,0.4);
+      box-shadow: 0 0 15px rgba(124,58,237,0.3);
     }
-    .project-link:hover {
-      background: linear-gradient(135deg, #06b6d4, #7c3aed);
+    .electronic-card .btn:hover {
       transform: scale(1.05);
-      box-shadow: 0 0 20px rgba(6,182,212,0.6);
+      box-shadow: 0 0 25px rgba(6,182,212,0.6);
     }
-    .electronics-card.landscape img {
-      aspect-ratio: 16/9;
-      object-fit: cover;
+
+    /* دکمه بازگشت و شبکه‌های اجتماعی */
+    .footer {
+      margin-top: 50px;
+      text-align: center;
     }
-    .electronics-card.portrait img {
-      aspect-ratio: 9/16;
-      object-fit: cover;
+    .back-btn {
+      display: inline-block;
+      margin-bottom: 20px;
+      padding: 10px 25px;
+      background: linear-gradient(90deg, #7c3aed, #06b6d4);
+      border-radius: 999px;
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      box-shadow: 0 0 15px rgba(124,58,237,0.4);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
+    .back-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 25px rgba(6,182,212,0.6);
+    }
+    .socials {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .s-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 15px;
+      background: rgba(255,255,255,0.05);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .s-icon:hover {
+      transform: translateY(-8px) scale(1.15);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.35);
+    }
+    .s-icon img {
+      width: 35px;
+      height: 35px;
+    }
+
+    /* واکنش‌گرا */
     @media (max-width: 768px) {
-      .electronics-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-    @media (min-width: 768px) {
       .video-grid {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: repeat(2, 1fr);
       }
       .graphic-grid {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .electronics-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .s-icon {
+        width: 50px;
+        height: 50px;
+      }
+      .s-icon img {
+        width: 28px;
+        height: 28px;
       }
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>نمونه‌کارها</h1>
+    <h1>Portfolio</h1>
 
     <!-- ادیت ویدیو -->
     <div class="section">
-      <h2>🎬 ادیت ویدیو</h2>
-      <div class="grid video-grid">
+      <h2>🎬 Video Editing</h2>
+      <div class="video-grid">
         <div class="card video-card">
           <video src="Assets/video1.mp4"></video>
           <button class="play-btn">▶</button>
@@ -189,13 +268,21 @@
           <video src="Assets/video4.mp4"></video>
           <button class="play-btn">▶</button>
         </div>
+        <div class="card video-card">
+          <video src="Assets/video5.mp4"></video>
+          <button class="play-btn">▶</button>
+        </div>
+        <div class="card video-card">
+          <video src="Assets/video6.mp4"></video>
+          <button class="play-btn">▶</button>
+        </div>
       </div>
     </div>
 
     <!-- طراحی گرافیک -->
     <div class="section">
-      <h2>🎨 طراحی گرافیک</h2>
-      <div class="grid graphic-grid">
+      <h2>🎨 Graphic Design</h2>
+      <div class="graphic-grid">
         <div class="card graphic-card">
           <img src="Assets/graphic1.jpg" alt="طراحی 1">
         </div>
@@ -207,27 +294,27 @@
 
     <!-- الکترونیک -->
     <div class="section">
-      <h2>🔌 الکترونیک</h2>
+      <h2>⚡ Electronics</h2>
       <div class="electronics-grid">
-        <div class="card electronics-card landscape">
+        <div class="electronic-card landscape">
           <img src="Assets/elec1.jpg" alt="پروژه 1">
-          <div class="electronics-title">پروژه اول</div>
-          <a href="project1.html" class="project-link">مشاهده پروژه</a>
+          <div>پروژه ۱</div>
+          <a href="project1.html" class="btn">مشاهده پروژه</a>
         </div>
-        <div class="card electronics-card landscape">
+        <div class="electronic-card landscape">
           <img src="Assets/elec2.jpg" alt="پروژه 2">
-          <div class="electronics-title">پروژه دوم</div>
-          <a href="project2.html" class="project-link">مشاهده پروژه</a>
+          <div>پروژه ۲</div>
+          <a href="project2.html" class="btn">مشاهده پروژه</a>
         </div>
-        <div class="card electronics-card portrait">
+        <div class="electronic-card portrait">
           <img src="Assets/elec3.jpg" alt="پروژه 3">
-          <div class="electronics-title">پروژه سوم</div>
-          <a href="project3.html" class="project-link">مشاهده پروژه</a>
+          <div>پروژه ۳</div>
+          <a href="project3.html" class="btn">مشاهده پروژه</a>
         </div>
-        <div class="card electronics-card portrait">
+        <div class="electronic-card portrait">
           <img src="Assets/elec4.jpg" alt="پروژه 4">
-          <div class="electronics-title">پروژه چهارم</div>
-          <a href="project4.html" class="project-link">مشاهده پروژه</a>
+          <div>پروژه ۴</div>
+          <a href="project4.html" class="btn">مشاهده پروژه</a>
         </div>
       </div>
     </div>
@@ -238,23 +325,53 @@
     <img src="" alt="نمایش بزرگ">
   </div>
 
+  <!-- Footer -->
+  <div class="footer">
+    <a href="about.html" class="back-btn">بازگشت</a>
+    <div class="socials">
+      <a href="https://t.me/username" class="s-icon" target="_blank">
+        <img src="telegram.png" alt="Telegram">
+      </a>
+      <a href="https://github.com/username" class="s-icon" target="_blank">
+        <img src="github.png" alt="GitHub">
+      </a>
+      <a href="https://www.linkedin.com/in/username" class="s-icon" target="_blank">
+        <img src="linkedin.png" alt="LinkedIn">
+      </a>
+      <a href="https://www.instagram.com/username" class="s-icon" target="_blank">
+        <img src="instagram.png" alt="Instagram">
+      </a>
+    </div>
+  </div>
+
   <script>
-    // پخش ویدیو
-    document.querySelectorAll('.video-card').forEach(card => {
+    // مدیریت پخش ویدیو
+    const videoCards = document.querySelectorAll('.video-card');
+    videoCards.forEach(card => {
       const video = card.querySelector('video');
       const btn = card.querySelector('.play-btn');
+
       btn.addEventListener('click', () => {
+        videoCards.forEach(c => {
+          const v = c.querySelector('video');
+          if (v !== video) v.pause();
+        });
         if (video.paused) {
           video.play();
           video.muted = false;
           btn.style.display = 'none';
         }
       });
+
+      video.addEventListener('click', () => {
+        if (!video.paused) video.pause();
+      });
+
       video.addEventListener('pause', () => btn.style.display = 'block');
       video.addEventListener('ended', () => btn.style.display = 'block');
     });
 
-    // لایت باکس طراحی گرافیک
+    // لایت‌باکس طراحی گرافیک
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = lightbox.querySelector('img');
     document.querySelectorAll('.graphic-card img').forEach(img => {
